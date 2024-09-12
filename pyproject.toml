@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "code-mage"
+version = "0.1.0"
+description = ""
+authors = ["gitdevjin <dev.hjshin@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+openai = "^1.44.1"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+codemage = 'code_mage.codeMage:main'
+
