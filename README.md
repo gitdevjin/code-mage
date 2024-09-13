@@ -1,21 +1,23 @@
-### Description
-CodeMage is a tool that translate a source file written in one programming language into another language.
+# Description
+-------------
+**CodeMage** is a tool that translate a source file written in one programming language into another language.
 The translation will be done by Large Language Model AI(such as ChatGPT)
 
-### Getting Started
+# Getting Started
+------------------
 
-1. Install Python : https://www.python.org/downloads/
+### 1. Install Python : https://www.python.org/downloads/
 
-2. Install Poetry
-
-```console
-pipx install poetry
-```
-
-Or
+### 2. Install Poetry
 
 ```console
 curl -sSL https://install.python-poetry.org | python3 -
+```
+
+Or if you have `pipx` installed on your locall machine, you can use the following commend
+How to download [`pipx`](https://github.com/pypa/pipx)
+```console
+pipx install poetry
 ```
 
 3. Clone the repository
@@ -41,13 +43,14 @@ OPENROUTER_API_KEY=your open_router_api_key
 
 Now you are ready to use the tool!
 
-### Usage
+## Usage
 
 ```console
 poetry run codemage <source_file>
 ```
 
 Options
+
 -t, --target : choose your target language (currently python, java, c++, javascript is supported)
 
 -o, --output : enter your output file name without extension
