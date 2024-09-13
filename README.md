@@ -2,6 +2,13 @@
 **CodeMage** is a tool that translate a source file written in one programming language into another language.
 The translation will be done by Large Language Model AI(such as ChatGPT)
 
+## Release 0.1
+
+### Features
+    1. Supported Languages: Javascript, Python, C++, Java
+
+
+
 # Getting Started
 
 ### 1. Install Python : https://www.python.org/downloads/
@@ -48,9 +55,24 @@ Now you are ready to use the tool!
 poetry run codemage <source_file>
 ```
 
-Options
+## Example
+You can try this program with the included example files as followings:
+
+```console
+poetry run codemage ./example/test.js -t python -o result
+```
+
+```console
+poetry run codemage ./example/test.js ./example/sample.js -t c++
+```
+
+## Options
+
+-h --help : display help message and exit
 
 -t, --target : choose your target language (currently python, java, c++, javascript is supported)
 
 -o, --output : enter your output file name without extension
+
+-v, --version : Show program's version number and exit
 
