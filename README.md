@@ -12,7 +12,7 @@ The translation will be done by Large Language Model AI(such as ChatGPT)
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-Or if you have `pipx` installed on your locall machine, you can use the following commend
+**OR** if you have `pipx` installed on your locall machine, you can use the following commend
 
 [How to download `pipx`](https://github.com/pypa/pipx)
 
@@ -38,7 +38,6 @@ It's free with sign-up. You can easily sign-up with your google account
 ```
 OPENROUTER_API_KEY=your open_router_api_key
 ```
-
 
 
 Now you are ready to use the tool!
