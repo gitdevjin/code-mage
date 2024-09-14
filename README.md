@@ -6,12 +6,15 @@ The translation will be done by Large Language Model AI(such as ChatGPT)
 
 ### Features
     1. Supported Languages: Javascript, Python, C++, Java
+    2. Default target Language is Python
 
 
 
 # Getting Started
 
 ### 1. Install Python : https://www.python.org/downloads/
+
+
 
 ### 2. Install Poetry
 
@@ -27,27 +30,36 @@ curl -sSL https://install.python-poetry.org | python3 -
 pipx install poetry
 ```
 
+
+
 ### 3. Clone the repository
 ```console
 git clone https://github.com/gitdevjin/code-mage.git
 cd code_mage
 ```
 
+
+
 ### 4. Install Poetry Package
 ```console
 poetry install
 ```
 
+
+
 ### 5. Create your API_KEY at [here](https://openrouter.ai/docs/api-keys)
 It's free with sign-up. You can easily sign-up with your google account
+
+
 
 ### 6. Create `.env` file in the root directory and save the following:
 ```
 OPENROUTER_API_KEY=your open_router_api_key
 ```
 
-
 Now you are ready to use the tool!
+
+
 
 # Usage
 
@@ -55,12 +67,13 @@ Now you are ready to use the tool!
 poetry run codemage <source_file>
 ```
 
-## Example
+## Examples
 You can try the tool with the included example files as followings:
 
 ```console
 poetry run codemage ./example/test.js -t python -o result
 ```
+
 
 ```console
 poetry run codemage ./example/test.js ./example/sample.js -target c++
