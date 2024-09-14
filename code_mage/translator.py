@@ -44,13 +44,9 @@ def translate(source_file, target=None, output=None, num=""):
     elif target_lang == "java":
         output_file_ext = ".java"
 
-    print("Source-file: " + original_file_name)
 
     with open(source_file, 'r') as src:
         code = src.read()
-    
-    print(code);
-
 
     # gets API Key from environment variable OPENAI_API_KEY
     api_key = os.getenv("OPENROUTER_API_KEY")
@@ -71,7 +67,6 @@ def translate(source_file, target=None, output=None, num=""):
     )
 
     result = completion.choices[0].message.content
-    print(result) # stdout
 
     output_file = f"translated_{original_file_name}{output_file_ext}"
     if output:
