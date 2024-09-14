@@ -14,7 +14,7 @@ The translation will be done by Large Language Model AI(such as ChatGPT)
 
 ### 1. Install Python : https://www.python.org/downloads/
 
-
+<br>
 
 ### 2. Install Poetry
 
@@ -30,7 +30,7 @@ curl -sSL https://install.python-poetry.org | python3 -
 pipx install poetry
 ```
 
-
+<br>
 
 ### 3. Clone the repository
 ```console
@@ -38,19 +38,19 @@ git clone https://github.com/gitdevjin/code-mage.git
 cd code_mage
 ```
 
-
+<br>
 
 ### 4. Install Poetry Package
 ```console
 poetry install
 ```
 
-
+<br>
 
 ### 5. Create your API_KEY at [here](https://openrouter.ai/docs/api-keys)
 It's free with sign-up. You can easily sign-up with your google account
 
-
+<br>
 
 ### 6. Create `.env` file in the root directory and save the following:
 ```
@@ -59,7 +59,7 @@ OPENROUTER_API_KEY=your open_router_api_key
 
 Now you are ready to use the tool!
 
-
+<br>
 
 # Usage
 
