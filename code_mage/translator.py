@@ -3,8 +3,14 @@ from openai import OpenAI
 from dotenv import load_dotenv
 
 
-def translate(source_file, target=None, output=None, num=""):
+def translate(source_file, args, num=""):
     load_dotenv()
+
+    # Get arguments
+    language = args.language
+    output = args.output
+    token_flag = args.token_usage
+    
     original_file_name = os.path.splitext(os.path.basename(source_file))[0]
     original_file_ext = os.path.splitext(os.path.basename(source_file))[1]
 
@@ -23,7 +29,7 @@ def translate(source_file, target=None, output=None, num=""):
 
     supported_lang = ["javascript", "python", "c++", "java"]
 
-    target_lang = target
+    target_lang = language
 
     if target_lang is None:
         target_lang = "python"

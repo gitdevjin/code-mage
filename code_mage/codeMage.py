@@ -15,15 +15,15 @@ def main():
     parser.add_argument('source_files', nargs='+', help="The path to the source file to translate.")
 
     # Options
-    parser.add_argument('--target', '-t', help='The language to translate the source files into')
+    parser.add_argument('--language', '-l', help='The language to translate the source files into')
     parser.add_argument('--output', '-o', help="Specify the output file name(without extension)")
     parser.add_argument('--version', '-v', action='version', version=f'CodeMage {VERSION}', help="Show program's version number and exit")
-
+    parser.add_argument('--token-usage', '-t', action='store_true', help='Specify token usage for the prompt and response')
     
     args = parser.parse_args()
 
     for index, file in enumerate(args.source_files):
-        translate(file, args.target, args.output, index + 1)
+        translate(file, args, index + 1)
 
 
 if __name__ == "__main__":
