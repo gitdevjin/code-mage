@@ -83,7 +83,7 @@ def translate(source_file, args, num=""):
         f.write(result)
 
 
-    # prints token usage information if --token-usage/-t flag was provided
+    # prints token usage information if --token-usage/-t flag is present
     if token_flag:
         if completion.usage.completion_tokens_details:
             prompt_tokens = completion.usage.prompt_tokens
