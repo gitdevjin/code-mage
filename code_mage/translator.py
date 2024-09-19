@@ -84,10 +84,14 @@ def translate(source_file, args, num=""):
 
     # prints token usage information if --token-usage/-t flag was provided
     if token_flag:
-        prompt_tokens = completion.usage.prompt_tokens
-        completion_tokens = completion.usage.completion_tokens
-        total_tokens = completion.usage.total_tokens
+        if completion.usage.completion_tokens_details:
+            prompt_tokens = completion.usage.prompt_tokens
+            completion_tokens = completion.usage.completion_tokens
+            total_tokens = completion.usage.total_tokens
 
-        print(f"Prompt tokens: {prompt_tokens}")
-        print(f"Completion tokens: {completion_tokens}")
-        print(f"Total tokens: {total_tokens}")
+            print(f"prompt tokens: {prompt_tokens}")
+            print(f"completion tokens: {completion_tokens}")
+            print(f"total tokens: {total_tokens}")
+        else:
+            print("Sorry, this model doesn't give token usage details")
+        
