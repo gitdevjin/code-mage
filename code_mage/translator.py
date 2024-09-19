@@ -1,4 +1,5 @@
 import os
+import sys
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -89,9 +90,9 @@ def translate(source_file, args, num=""):
             completion_tokens = completion.usage.completion_tokens
             total_tokens = completion.usage.total_tokens
 
-            print(f"prompt tokens: {prompt_tokens}")
-            print(f"completion tokens: {completion_tokens}")
-            print(f"total tokens: {total_tokens}")
+            print(f"prompt tokens: {prompt_tokens}", file=sys.stderr)
+            print(f"completion tokens: {completion_tokens}", file=sys.stderr)
+            print(f"total tokens: {total_tokens}", file=sys.stderr)
         else:
-            print("Sorry, this model doesn't give token usage details")
+            print("Sorry, this model doesn't give token usage details", file=sys.stderr)
         
