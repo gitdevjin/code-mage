@@ -83,9 +83,10 @@ poetry run codemage ./example/test.js ./example/sample.js -target c++
 
 -h, --help : display help message and exit
 
--t, --target : choose your target language (currently python, java, c++, javascript is supported)
+-l, --language : choose your target language (currently python, java, c++, javascript is supported)
 
 -o, --output : enter your output file name without extension
 
 -v, --version : Show program's version number and exit
+
 
