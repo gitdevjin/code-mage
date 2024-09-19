@@ -80,3 +80,14 @@ def translate(source_file, args, num=""):
         
     with open(output_file, 'w') as f:
         f.write(result)
+
+
+    # prints token usage information if --token-usage/-t flag was provided
+    if token_flag:
+        prompt_tokens = completion.usage.prompt_tokens
+        completion_tokens = completion.usage.completion_tokens
+        total_tokens = completion.usage.total_tokens
+
+        print(f"Prompt tokens: {prompt_tokens}")
+        print(f"Completion tokens: {completion_tokens}")
+        print(f"Total tokens: {total_tokens}")
