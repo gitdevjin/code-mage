@@ -1,4 +1,5 @@
 import os
+import sys
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -80,3 +81,18 @@ def translate(source_file, args, num=""):
         
     with open(output_file, 'w') as f:
         f.write(result)
+
+
+    # prints token usage information if --token-usage/-t flag is present
+    if token_flag:
+        if completion.usage.completion_tokens_details:
+            prompt_tokens = completion.usage.prompt_tokens
+            completion_tokens = completion.usage.completion_tokens
+            total_tokens = completion.usage.total_tokens
+
+            sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
+            sys.stderr.write(f"completion tokens: {completion_tokens}\n")
+            sys.stderr.write(f"total tokens: {total_tokens}\n")
+        else:
+            sys.stderr.write("Sorry, this model doesn't give token usage details\n")
+        

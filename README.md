@@ -89,4 +89,6 @@ poetry run codemage ./example/test.js ./example/sample.js -target c++
 
 -v, --version : Show program's version number and exit
 
+-t, --token-usage : Get information about token usage for the prompt and response
+
 
