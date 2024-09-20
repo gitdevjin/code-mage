@@ -90,9 +90,9 @@ def translate(source_file, args, num=""):
             completion_tokens = completion.usage.completion_tokens
             total_tokens = completion.usage.total_tokens
 
-            print(f"prompt tokens: {prompt_tokens}", file=sys.stderr)
-            print(f"completion tokens: {completion_tokens}", file=sys.stderr)
-            print(f"total tokens: {total_tokens}", file=sys.stderr)
+            sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
+            sys.stderr.write(f"completion tokens: {completion_tokens}\n")
+            sys.stderr.write(f"total tokens: {total_tokens}\n")
         else:
-            print("Sorry, this model doesn't give token usage details", file=sys.stderr)
+            sys.stderr.write("Sorry, this model doesn't give token usage details\n")
         
