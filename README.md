@@ -2,6 +2,8 @@
 **CodeMage** is a tool that translates a source file written in one programming language into another language.
 The translation will be done by Large Language Model AI(such as ChatGPT)
 
+<img src="https://vhs.charm.sh/vhs-5IzBzwY5YvLUKiO1Ntq8DX.gif">
+
 ## Release 0.1
 
 ### Features
@@ -78,6 +80,11 @@ poetry run codemage ./example/test.js -t python -o result
 
 ```console
 poetry run codemage ./example/test.js ./example/sample.js -target c++
+```
+
+
+```console
+poetry run codemage ./example/test.js -m groq -o result -t
 ```
 
 ## Options
