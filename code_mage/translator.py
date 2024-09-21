@@ -2,6 +2,7 @@ import os
 import sys
 from openai import OpenAI
 from dotenv import load_dotenv
+from groq import Groq
 
 
 def translate(source_file, args, num=""):
@@ -55,24 +56,42 @@ def translate(source_file, args, num=""):
     with open(source_file, 'r') as src:
         code = src.read()
 
-    # gets API Key from environment variable OPENAI_API_KEY
-    api_key = os.getenv("OPENROUTER_API_KEY")
 
-    client = OpenAI(
-        base_url="https://openrouter.ai/api/v1",
-        api_key=api_key,
-    )
+    result = None
+    completion = None
+    if args.model == "groq":
+        print("groq")
+        client = Groq(
+            api_key=os.getenv("GROQ_API_KEY"),
+        )
 
-    completion = client.chat.completions.create(
-        extra_headers={
-        },
-        model="sao10k/l3-euryale-70b",
-        messages=[
-            {"role": "system", "content": "only display the code without any explanation"},
-            {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
-        ],
-    )
+        completion = client.chat.completions.create(
+            messages=[
+                {"role": "system", "content": "only display the code without any explanation"},
+                {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
+            ],
+            model="llama3-8b-8192",
+        )
+    elif args.model == "openrouter" or args.model is None:
+        print("openrouter")
+        client = OpenAI(
+            base_url="https://openrouter.ai/api/v1",
+            api_key=os.getenv("OPENROUTER_API_KEY"),
+        )
 
+        completion = client.chat.completions.create(
+            extra_headers={
+                },
+            model="sao10k/l3-euryale-70b",
+            messages=[
+                {"role": "system", "content": "only display the code without any explanation"},
+                {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
+            ],
+        )
+    else:
+        sys.stderr.write("Not Supported Model")
+        sys.stderr.write("Supported Model: openrouter, groq")
+    
     result = completion.choices[0].message.content
 
     output_file = f"translated_{original_file_name}{output_file_ext}"
@@ -84,15 +103,14 @@ def translate(source_file, args, num=""):
 
 
     # prints token usage information if --token-usage/-t flag is present
-    if token_flag:
-        if completion.usage.completion_tokens_details:
-            prompt_tokens = completion.usage.prompt_tokens
-            completion_tokens = completion.usage.completion_tokens
-            total_tokens = completion.usage.total_tokens
+    if token_flag and args.model != "openrouter":
+        prompt_tokens = completion.usage.prompt_tokens
+        completion_tokens = completion.usage.completion_tokens
+        total_tokens = completion.usage.total_tokens
 
-            sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
-            sys.stderr.write(f"completion tokens: {completion_tokens}\n")
-            sys.stderr.write(f"total tokens: {total_tokens}\n")
-        else:
-            sys.stderr.write("Sorry, this model doesn't give token usage details\n")
+        sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
+        sys.stderr.write(f"completion tokens: {completion_tokens}\n")
+        sys.stderr.write(f"total tokens: {total_tokens}\n")
+    else:
+        sys.stderr.write("Sorry, this model doesn't provide token usage details\n")
         

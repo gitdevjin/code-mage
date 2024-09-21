@@ -2,7 +2,6 @@
 
 import argparse
 import os
-from openai import OpenAI
 from dotenv import load_dotenv
 from .translator import translate
 
@@ -19,6 +18,7 @@ def main():
     parser.add_argument('--output', '-o', help="Specify the output file name(without extension)")
     parser.add_argument('--version', '-v', action='version', version=f'CodeMage {VERSION}', help="Show program's version number and exit")
     parser.add_argument('--token-usage', '-t', action='store_true', help='Get information about token usage for the prompt and response')
+    parser.add_argument('--model', '-m', help="Specify the LLM API model name")
     
     args = parser.parse_args()
 

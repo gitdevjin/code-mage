@@ -83,9 +83,11 @@ poetry run codemage ./example/test.js ./example/sample.js -target c++
 
 -h, --help : display help message and exit
 
--l, --language : choose your target language (currently python, java, c++, javascript is supported)
+-l, --language : choose your target language (currently python, java, c++, and javascript are supported)
 
 -o, --output : enter your output file name without extension
+
+-m, --model : select LLM API model (currently openrouter, and groq are supported)
 
 -v, --version : Show program's version number and exit
 
