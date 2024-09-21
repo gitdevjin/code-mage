@@ -50,14 +50,16 @@ poetry install
 
 <br>
 
-### 5. Create your API_KEY at [here](https://openrouter.ai/docs/api-keys)
+### 5. Create your API_KEY at [openrouter](https://openrouter.ai/docs/api-keys)
+### Or [Groq](https://console.groq.com/keys)
 It's free with sign-up. You can easily sign-up with your google account
 
 <br>
 
 ### 6. Create `.env` file in the root directory and save the following:
 ```
-OPENROUTER_API_KEY=your open_router_api_key
+OPENROUTER_API_KEY=your_open_router_api_key
+GROQ_API_KEY=your_groq_api_key
 ```
 
 Now you are ready to use the tool!
