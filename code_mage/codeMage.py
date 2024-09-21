@@ -2,6 +2,7 @@
 
 import argparse
 import os
+import sys
 from dotenv import load_dotenv
 from .translator import translate
 
@@ -11,7 +12,7 @@ def main():
     parser = argparse.ArgumentParser(description="This Tool translates a source file into another programming language.")
     
     # Arguments
-    parser.add_argument('source_files', nargs='+', help="The path to the source file to translate.")
+    parser.add_argument('source_files', nargs='*', help="The path to the source file to translate.")
 
     # Options
     parser.add_argument('--language', '-l', help='The language to translate the source files into')
@@ -21,6 +22,9 @@ def main():
     parser.add_argument('--model', '-m', help="Specify the LLM API model name")
     
     args = parser.parse_args()
+
+    if not args.source_files:
+        sys.exit("Welcome To CodeMage!\nIf you need a Help? Type the fllowing:\npoetry run codemage -h")
 
     for index, file in enumerate(args.source_files):
         translate(file, args, index + 1)

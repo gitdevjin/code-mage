@@ -7,7 +7,8 @@ The translation will be done by Large Language Model AI(such as ChatGPT)
 ### Features
     1. Supported Languages: Javascript, Python, C++, Java
     2. Default target Language is Python
-
+    3. Supported LLM model: openrouter, groq
+    4. Default LLM model is openrouter(sao10k/l3-euryale-70b)
 
 
 # Getting Started
