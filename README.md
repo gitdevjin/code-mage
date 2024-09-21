@@ -50,8 +50,7 @@ poetry install
 
 <br>
 
-### 5. Create your API_KEY at [openrouter](https://openrouter.ai/docs/api-keys)
-### Or [Groq](https://console.groq.com/keys)
+### 5. Create your API_KEY at [openrouter](https://openrouter.ai/docs/api-keys) Or [Groq](https://console.groq.com/keys)
 It's free with sign-up. You can easily sign-up with your google account
 
 <br>
