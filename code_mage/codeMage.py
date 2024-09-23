@@ -24,7 +24,7 @@ def main():
     args = parser.parse_args()
 
     if not args.source_files:
-        sys.exit("Welcome To CodeMage!\nIf you need a Help? Type the fllowing:\npoetry run codemage -h")
+        sys.exit("Welcome To CodeMage!\nIf you need a Help, Type the fllowing command:\npoetry run codemage -h")
 
     for index, file in enumerate(args.source_files):
         translate(file, args, index + 1)

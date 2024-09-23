@@ -56,8 +56,6 @@ def translate(source_file, args, num=""):
     with open(source_file, 'r') as src:
         code = src.read()
 
-
-    result = None
     completion = None
     if args.model == "groq":
         print("groq")
@@ -94,11 +92,11 @@ def translate(source_file, args, num=""):
     
     result = completion.choices[0].message.content
 
-    output_file = f"translated_{original_file_name}{output_file_ext}"
+    output_file_name = f"translated_{original_file_name}{output_file_ext}"
     if output:
-        output_file = output + str(num) + output_file_ext
+        output_file_name = output + str(num) + output_file_ext
         
-    with open(output_file, 'w') as f:
+    with open(output_file_name, 'w') as f:
         f.write(result)
 
 
