@@ -8,18 +8,38 @@ from groq import Groq
 def translate(source_file, args, num=""):
     load_dotenv()
 
+    supported_lang = ["javascript", "python", "c++", "java"]
+
     # Get arguments
-    language = args.language
+    target_lang = args.language
     output = args.output
     token_flag = args.token_usage
+    source_lang = "none"
     
+    # Extracting Original file name and extension
     original_file_name = os.path.splitext(os.path.basename(source_file))[0]
     original_file_ext = os.path.splitext(os.path.basename(source_file))[1]
 
-    output_file_ext = ".py"
-    
-    source_lang = "none"
+    # Validify and Set Default traget_lang
+    if target_lang is None:
+        target_lang = "python"
+    elif target_lang not in supported_lang:
+        sys.exit("the target language is not supported")
 
+    # Default target_lang and extension is python
+    output_file_ext = ".py"
+
+    # Decide output file extension.
+    if target_lang == "javascript":
+        output_file_ext = ".js"
+    elif target_lang == "python":
+        output_file_ext = ".py"
+    elif target_lang == "c++":
+        output_file_ext = ".cpp"
+    elif target_lang == "java":
+        output_file_ext = ".java"
+    
+    # Check source_lang
     if original_file_ext == ".js":
         source_lang = "javascript"
     elif original_file_ext == ".py":
@@ -29,29 +49,13 @@ def translate(source_file, args, num=""):
     elif original_file_ext == ".java":
         source_lang = "java"
 
-    supported_lang = ["javascript", "python", "c++", "java"]
-
-    target_lang = language
-
-    if target_lang is None:
-        target_lang = "python"
-    elif target_lang not in supported_lang:
-        sys.exit("the target language is not supported")
-        
+    # Validify source_lang
     if source_lang == target_lang:
         sys.exit("the target language is the same with the source_file")
     elif source_lang == "none":
         sys.exit("the file is not a supported programming language")
 
-    if target_lang == "javascript":
-        output_file_ext = ".js"
-    elif target_lang == "python":
-        output_file_ext = ".py"
-    elif target_lang == "c++":
-        output_file_ext = ".cpp"
-    elif target_lang == "java":
-        output_file_ext = ".java"
-
+    
     output_file_name = f"translated_{original_file_name}{output_file_ext}"
     if output:
         output_file_name = output + str(num) + output_file_ext
