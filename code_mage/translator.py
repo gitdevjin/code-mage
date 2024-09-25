@@ -52,6 +52,9 @@ def translate(source_file, args, num=""):
     elif target_lang == "java":
         output_file_ext = ".java"
 
+    output_file_name = f"translated_{original_file_name}{output_file_ext}"
+    if output:
+        output_file_name = output + str(num) + output_file_ext
 
     with open(source_file, 'r') as src:
         code = src.read()
@@ -91,10 +94,6 @@ def translate(source_file, args, num=""):
         sys.stderr.write("Supported Model: openrouter, groq")
     
     result = completion.choices[0].message.content
-
-    output_file_name = f"translated_{original_file_name}{output_file_ext}"
-    if output:
-        output_file_name = output + str(num) + output_file_ext
         
     with open(output_file_name, 'w') as f:
         f.write(result)
