@@ -63,7 +63,49 @@ def translate(source_file, args, num=""):
     with open(source_file, 'r') as src:
         code = src.read()
 
+
     completion = None
+    #******************** Stream out the result ******************** #
+    if args.stream:
+        if args.model == "groq":
+            client = Groq(
+                api_key=os.getenv("GROQ_API_KEY"),
+            )
+            completion = client.chat.completions.create(
+                messages=[
+                    {"role": "system", "content": "only display the code without any explanation"},
+                    {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
+                ],
+                model="llama3-8b-8192",
+                stream=True,
+            )
+        elif args.model == "openrouter" or args.model is None:
+            client = OpenAI(
+                base_url="https://openrouter.ai/api/v1",
+                api_key=os.getenv("OPENROUTER_API_KEY"),
+            )
+
+            completion = client.chat.completions.create(
+                extra_headers={
+                    },
+                model="sao10k/l3-euryale-70b",
+                messages=[
+                    {"role": "system", "content": "only display the code without any explanation"},
+                    {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
+                ],
+                stream=True,
+            )
+        else:
+            sys.stderr.write("Not Supported Model")
+            sys.stderr.write("Supported Model: openrouter, groq")
+
+        for chunk in completion:
+            if chunk.choices[0].delta.content is not None:
+                print(chunk.choices[0].delta.content, end="")
+
+        sys.exit(0) # EXIT with success status
+    # ******************** *************** **************************** #
+
     if args.model == "groq":
         print("groq")
         client = Groq(
