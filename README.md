@@ -102,4 +102,4 @@ poetry run codemage ./example/test.js -m groq -o result -t
 
 -t, --token-usage : Get information about token usage for the prompt and response
 
-
+-s, --stream : Stream out the output into stdout

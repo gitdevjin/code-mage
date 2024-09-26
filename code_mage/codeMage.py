@@ -20,7 +20,7 @@ def main():
     parser.add_argument('--version', '-v', action='version', version=f'CodeMage {VERSION}', help="Show program's version number and exit")
     parser.add_argument('--token-usage', '-t', action='store_true', help='Get information about token usage for the prompt and response')
     parser.add_argument('--model', '-m', help="Specify the LLM API model name")
-    parser.add_argument('--stream', '-s', action='store_true', help='Get the output on stdout as a stream')
+    parser.add_argument('--stream', '-s', action='store_true', help='Stream out the output into stdout')
     
     args = parser.parse_args()
 
