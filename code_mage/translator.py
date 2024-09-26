@@ -112,6 +112,6 @@ def translate(source_file, args, num=""):
         sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
         sys.stderr.write(f"completion tokens: {completion_tokens}\n")
         sys.stderr.write(f"total tokens: {total_tokens}\n")
-    else:
+    elif token_flag and args.model == "openrouter":
         sys.stderr.write("Sorry, this model doesn't provide token usage details\n")
         
