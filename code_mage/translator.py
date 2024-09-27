@@ -3,6 +3,7 @@ import sys
 from openai import OpenAI
 from dotenv import load_dotenv
 from groq import Groq
+from .api import call_api
 
 
 def translate(source_file, args, num=""):
@@ -60,100 +61,45 @@ def translate(source_file, args, num=""):
     if output:
         output_file_name = output + str(num) + output_file_ext
 
+    # Read file
     with open(source_file, 'r') as src:
         code = src.read()
 
-
-    completion = None
-    #******************** Stream out the result ******************** #
+    # Stream out the result
     if args.stream:
-        if args.model == "groq":
-            client = Groq(
-                api_key=os.getenv("GROQ_API_KEY"),
-            )
-            completion = client.chat.completions.create(
-                messages=[
-                    {"role": "system", "content": "only display the code without any explanation"},
-                    {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
-                ],
-                model="llama3-8b-8192",
-                stream=True,
-            )
-        elif args.model == "openrouter" or args.model is None:
-            client = OpenAI(
-                base_url="https://openrouter.ai/api/v1",
-                api_key=os.getenv("OPENROUTER_API_KEY"),
-            )
-
-            completion = client.chat.completions.create(
-                extra_headers={
-                    },
-                model="sao10k/l3-euryale-70b",
-                messages=[
-                    {"role": "system", "content": "only display the code without any explanation"},
-                    {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
-                ],
-                stream=True,
-            )
-        else:
-            sys.stderr.write("Not Supported Model")
-            sys.stderr.write("Supported Model: openrouter, groq")
+        completion = call_api(args.model, target_lang, code, args.stream)
 
         for chunk in completion:
             if chunk.choices[0].delta.content is not None:
                 print(chunk.choices[0].delta.content, end="")
 
-        sys.exit(0) # EXIT with success status
-    # ******************** *************** **************************** #
-
-    if args.model == "groq":
-        print("groq")
-        client = Groq(
-            api_key=os.getenv("GROQ_API_KEY"),
-        )
-
-        completion = client.chat.completions.create(
-            messages=[
-                {"role": "system", "content": "only display the code without any explanation"},
-                {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
-            ],
-            model="llama3-8b-8192",
-        )
-    elif args.model == "openrouter" or args.model is None:
-        print("openrouter")
-        client = OpenAI(
-            base_url="https://openrouter.ai/api/v1",
-            api_key=os.getenv("OPENROUTER_API_KEY"),
-        )
-
-        completion = client.chat.completions.create(
-            extra_headers={
-                },
-            model="sao10k/l3-euryale-70b",
-            messages=[
-                {"role": "system", "content": "only display the code without any explanation"},
-                {"role": "user", "content": f"translate this to {target_lang} language: {code}"},
-            ],
-        )
-    else:
-        sys.stderr.write("Not Supported Model")
-        sys.stderr.write("Supported Model: openrouter, groq")
-    
-    result = completion.choices[0].message.content
+        if token_flag is not None:
+            sys.stderr.write("\nStream Flag Doesn't Support Token-Usage Option")
         
-    with open(output_file_name, 'w') as f:
-        f.write(result)
+        print("\n************ END ************\n");
+    else: # File Output
+    
+        completion = call_api(args.model, target_lang, code, args.stream)
+
+        result = completion.choices[0].message.content
+
+        with open(output_file_name, 'w') as f:
+            f.write(result)
+
+        # prints token usage information if --token-usage/-t flag is present
+        if token_flag and args.model != "openrouter":
+            prompt_tokens = completion.usage.prompt_tokens
+            completion_tokens = completion.usage.completion_tokens
+            total_tokens = completion.usage.total_tokens
+
+            sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
+            sys.stderr.write(f"completion tokens: {completion_tokens}\n")
+            sys.stderr.write(f"total tokens: {total_tokens}\n")
+        elif token_flag and args.model == "openrouter":
+            sys.stderr.write("Sorry, this model doesn't provide token usage details\n")
+        
 
 
-    # prints token usage information if --token-usage/-t flag is present
-    if token_flag and args.model != "openrouter":
-        prompt_tokens = completion.usage.prompt_tokens
-        completion_tokens = completion.usage.completion_tokens
-        total_tokens = completion.usage.total_tokens
 
-        sys.stderr.write(f"prompt tokens: {prompt_tokens}\n")
-        sys.stderr.write(f"completion tokens: {completion_tokens}\n")
-        sys.stderr.write(f"total tokens: {total_tokens}\n")
-    elif token_flag and args.model == "openrouter":
-        sys.stderr.write("Sorry, this model doesn't provide token usage details\n")
+    
         
