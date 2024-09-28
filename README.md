@@ -78,17 +78,26 @@ You can try the tool with the included example files as followings:
 poetry run codemage ./example/test.js -l python
 ```
 
-You can also use the tool with multiple files
+<br>
+
+You can also use the tool with multiple files:
+
 ```console
 poetry run codemage ./example/test.js ./example/sample.js -l java
 ```
 
-You can select model with `-m, --model <model_name>` option
+<br>
+
+You can select model with `-m, --model <model_name>` option:
+
 ```console
 poetry run codemage ./example/test.js -m groq -o result -t
 ```
 
-You can stream out the result onto `stdout` with `-s, --stream` flag
+<br>
+
+You can stream out the result onto `stdout` with `-s, --stream` flag:
+
 ```console
 poetry run codemage ./example/test.js -s
 ```
