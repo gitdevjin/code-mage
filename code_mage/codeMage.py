@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 
 import argparse
-import os
 import sys
-from dotenv import load_dotenv
 from .translator import translate
 
 def main():

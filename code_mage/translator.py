@@ -1,8 +1,6 @@
 import os
 import sys
-from openai import OpenAI
 from dotenv import load_dotenv
-from groq import Groq
 from .api import call_api
 
 
@@ -52,7 +50,7 @@ def translate(source_file, args, num=""):
 
         sys.stdout.flush()
 
-        if args.token_usage is not None:
+        if args.token_usage is not False:
             sys.stderr.write("\nStream Flag Doesn't Support Token-Usage Option")
         
         print("\n************ END ************\n");
