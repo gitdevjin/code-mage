@@ -25,7 +25,7 @@ The translation will be done by Large Language Model AI(such as ChatGPT)
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
-**OR** if you have `pipx` installed on your locall machine, you can use the following commend
+**OR** if you have `pipx` installed on your local machine, you can use the following commend
 
 [How to download `pipx`](https://github.com/pypa/pipx)
 
@@ -75,18 +75,24 @@ poetry run codemage <source_file>
 You can try the tool with the included example files as followings:
 
 ```console
-poetry run codemage ./example/test.js -t python -o result
+poetry run codemage ./example/test.js -l python
 ```
 
-
+You can also use the tool with multiple files
 ```console
-poetry run codemage ./example/test.js ./example/sample.js -target c++
+poetry run codemage ./example/test.js ./example/sample.js -l java
 ```
 
-
+You can select model with `-m, --model <model_name>` option
 ```console
 poetry run codemage ./example/test.js -m groq -o result -t
 ```
+
+You can stream out the result onto `stdout` with `-s, --stream` flag
+```console
+poetry run codemage ./example/test.js -s
+```
+
 
 ## Options
 
