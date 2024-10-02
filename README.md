@@ -112,10 +112,10 @@ poetry run codemage ./example/test.js -s
 
 If you wish, you can specify all of your options in a TOML formatted configuration.
 
-- Start by creating a `.code-mage-config.toml` in the root folder of the project.
+- Start by creating a `.code-mage-config.toml` in your home directory.
 
 ```bash
-mkdir .code-mage-config.toml
+mkdir ~/.code-mage-config.toml
 ```
 
 - Add the following information to the file:
@@ -130,7 +130,7 @@ token_usage=false/true
 output="result" # type any name for the output file without the extension
 ```
 
-- Run the default command
+- Run the command
 
 ```
 poetry run codemage ./example/test.js
