@@ -1,0 +1,6 @@
+model="groq"
+GROQ_API_KEY="<YOUR-GROQ-API-KEY>"
+OPENROUTER_API_KEY="<YOUR-OPEN-ROUTER-API-KEY>"
+language="java"
+stream=false
+token_usage=true

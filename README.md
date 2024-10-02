@@ -1,17 +1,18 @@
 <img src="https://vhs.charm.sh/vhs-5IzBzwY5YvLUKiO1Ntq8DX.gif">
 
 # Description
+
 **CodeMage** is a tool that translates a source file written in one programming language into another language.
 The translation will be done by Large Language Model AI(such as ChatGPT)
 
 ## Release 0.1
 
 ### Features
+
     1. Supported Languages: Javascript, Python, C++, Java
     2. Default target Language is Python
     3. Supported LLM model: openrouter, groq
     4. Default LLM model is openrouter(sao10k/l3-euryale-70b)
-
 
 # Getting Started
 
@@ -36,6 +37,7 @@ pipx install poetry
 <br>
 
 ### 3. Clone the repository
+
 ```console
 git clone https://github.com/gitdevjin/code-mage.git
 cd code_mage
@@ -44,6 +46,7 @@ cd code_mage
 <br>
 
 ### 4. Install Poetry Package
+
 ```console
 poetry install
 ```
@@ -51,11 +54,13 @@ poetry install
 <br>
 
 ### 5. Create your API_KEY at [openrouter](https://openrouter.ai/docs/api-keys) Or [Groq](https://console.groq.com/keys)
+
 It's free with sign-up. You can easily sign-up with your google account
 
 <br>
 
 ### 6. Create `.env` file in the root directory and save the following:
+
 ```
 OPENROUTER_API_KEY=your_open_router_api_key
 GROQ_API_KEY=your_groq_api_key
@@ -72,6 +77,7 @@ poetry run codemage <source_file>
 ```
 
 ## Examples
+
 You can try the tool with the included example files as followings:
 
 ```console
@@ -102,6 +108,33 @@ You can stream out the result onto `stdout` with `-s, --stream` flag:
 poetry run codemage ./example/test.js -s
 ```
 
+### Using TOML files
+
+If you wish, you can specify all of your options in a TOML formatted configuration.
+
+- Start by creating a `.code-mage-config.toml` in the root folder of the project.
+
+```bash
+mkdir .code-mage-config.toml
+```
+
+- Add the following information to the file:
+
+```toml
+model="groq" # if you wish to use OPEN ROUTER you can just delete this line
+GROQ_API_KEY="<YOUR-GROQ-API-KEY>"
+OPENROUTER_API_KEY="<YOUR-OPEN-ROUTER-API-KEY>"
+language="java" # you can use any of the supported languages
+stream=false/true
+token_usage=false/true
+output="result" # type any name for the output file without the extension
+```
+
+- Run the default command
+
+```
+poetry run codemage ./example/test.js
+```
 
 ## Options
 
