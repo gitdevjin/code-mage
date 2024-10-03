@@ -112,10 +112,10 @@ poetry run codemage ./example/test.js -s
 
 If you wish, you can specify all of your options in a TOML formatted configuration.
 
-- Start by creating a `.code-mage-config.toml` in your home directory.
+- Start by creating a `.codemage-config.toml` in your home directory.
 
 ```bash
-mkdir ~/.code-mage-config.toml
+mkdir ~/.codemage-config.toml
 ```
 
 - Add the following information to the file:
