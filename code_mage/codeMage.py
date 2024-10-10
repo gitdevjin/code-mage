@@ -2,7 +2,7 @@
 
 import argparse
 import sys
-from .translator import translate
+from .translator import Translator
 from .loadConfig import load_config
 
 def main():
@@ -29,8 +29,10 @@ def main():
     if not args.source_files:
         sys.exit("Welcome To CodeMage!\nIf you need a Help, Type the fllowing command:\npoetry run codemage -h")
 
+    translator = Translator(args, config)
+    
     for index, file in enumerate(args.source_files):
-        translate(file, args, index + 1)
+        translator.translate(file, index + 1)
 
 
 if __name__ == "__main__":
