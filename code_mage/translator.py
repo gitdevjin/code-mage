@@ -85,16 +85,17 @@ class Translator:
 		return output_file_name
 
 	def __get_source_lang(self, extension):
+		src_lang = "none"
 		if extension == ".js":
-			self.src_lang = "javascript"
+			src_lang = "javascript"
 		elif extension == ".py":
-			self.src_lang = "python"
+			src_lang = "python"
 		elif extension == ".cpp":
-			self.src_lang = "c++"
+			src_lang = "c++"
 		elif extension == ".java":
-			self.src_lang = "java"
+			src_lang = "java"
 
-		return self.src_lang
+		return src_lang
 
 	def __get_output_ext(self, language):
 		# Decide output file extension.

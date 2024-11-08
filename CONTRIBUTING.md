@@ -1,4 +1,6 @@
-## To set up automated Ruff linting and formatting with VS Code, Follow the instructions:
+# Formatter and Linter
+
+To set up automated Ruff linting and formatting with VS Code, Follow the instructions:
 
 ### 1. Python Extension for VS Code (if not already installed):
 
@@ -21,4 +23,42 @@ poetry run ruff format .
 
 ```bash
 poetry run ruff check .
+```
+
+# Testing
+
+For testing, we use `pytest`.
+
+### install `pytest` if not installed yet.
+```bash
+poetry add --dev pytest
+```
+
+### Running `pytest`
+This command will run files named `test_*.py` or `*_test.py`
+```bash
+poetry run pytest
+```
+
+
+For more detailed test result, you can use `-v` option
+```bash
+poetry run pytest -v
+```
+
+for more detailed test information
+```bash
+poetry run pytest -vv
+```
+
+### Writing TestCode
+You should name your test class and method as follows:
+
+#### Class name starts with `Test`
+
+#### Method name starts with `test_`
+
+```python
+class TestMyFeature: # class name
+    def test_feature_functionality: # method name
 ```

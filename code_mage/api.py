@@ -9,9 +9,7 @@ class Api:
 		self.model = model if model is not None else "openrouter"
 
 		if self.model not in self.supported_model:
-			sys.exit(
-				f"{self.model} api model is not suppored. Model Supported: {self.supported_model}"
-			)
+			sys.exit(f"{self.model} is not suppored. Model Supported: {self.supported_model}")
 
 		# default api_url and api_model
 		self.api_url = "https://openrouter.ai/api/v1"

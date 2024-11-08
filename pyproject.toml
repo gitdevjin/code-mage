@@ -13,11 +13,12 @@ toml = "^0.10.2"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "^0.7.1"
+pytest = "^8.3.3"
+pytest-mock = "^3.14.0"
 
 [tool.ruff]
 line-length = 100
-exclude = [
-    "tests/*",          
+exclude = [         
     "docs/*",           
     "*.pyc",            
     "migrations/*",     
