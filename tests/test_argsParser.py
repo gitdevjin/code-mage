@@ -36,6 +36,15 @@ def test_arg_parser_with_source_file(mock_config):
 		assert args.output == "result"
 
 
+# Test with source file
+def test_arg_parser_with_more_than_two_source_files(mock_config):
+	with patch("sys.argv", ["code_mage.py", "example.js", "sample.js"]):
+		args = arg_parser(mock_config)
+		assert args.source_files == ["example.js", "sample.js"]
+		assert args.language == "python"
+		assert args.output == "result"
+
+
 # Test with --language option
 def test_arg_parser_with_language_option(mock_config):
 	with patch("sys.argv", ["code_mage.py", "--language", "java"]):
