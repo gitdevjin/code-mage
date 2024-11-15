@@ -113,3 +113,12 @@ def test_arg_parser_token_usage_option_short(mock_config):
 	with patch("sys.argv", ["code_mage.py", "-t"]):
 		args = arg_parser(mock_config)
 		assert args.token_usage is True
+
+
+# Test invalid flag argument option
+def test_arg_parser_invalid_option():
+    with patch("sys.argv", ["code_mage.py", "--invalid"]):
+        with pytest.raises(SystemExit) as excinfo:
+            arg_parser({})
+        assert excinfo.type is SystemExit
+        assert excinfo.value.code != 0
