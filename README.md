@@ -5,7 +5,7 @@
 **CodeMage** is a tool that translates a source file written in one programming language into another language.
 The translation will be done by Large Language Model AI(such as ChatGPT)
 
-## Release 0.1
+## Release 1.0.0
 
 ### Features
 
@@ -14,7 +14,54 @@ The translation will be done by Large Language Model AI(such as ChatGPT)
     3. Supported LLM model: openrouter, groq
     4. Default LLM model is openrouter(sao10k/l3-euryale-70b)
 
-# Getting Started
+# Getting Started with `PyPI`
+
+### 1. Download the package using PyPI
+```bash
+pip install code-mage
+```
+
+### 2. Create your API_KEY at [openrouter](https://openrouter.ai/docs/api-keys) Or [Groq](https://console.groq.com/keys)
+
+It's free with sign-up. You can easily sign-up with your google account
+
+### 3.a Set-up the API_KEY using `Variable` (option 1)
+
+```bash
+export API_KEY=YOUR-API-KEY
+```
+
+### 3.b Set-up with `.toml` file (option 2)
+
+With this option, you can also set other tool options.
+
+- Start by creating a `.codemage-config.toml` in your home directory.
+
+```bash
+mkdir ~/.codemage-config.toml
+```
+
+- Add the following information to the file:
+
+```toml
+model="groq" # if you wish to use OPEN ROUTER you can just delete this line
+GROQ_API_KEY="<YOUR-GROQ-API-KEY>"
+OPENROUTER_API_KEY="<YOUR-OPEN-ROUTER-API-KEY>"
+language="java" # you can use any of the supported languages
+stream=false # if you wish to get the output streamed, set it `true`
+token_usage=false # if you wish to get token_usage info, set it `true`
+output="result" # type any name for the output file without the extension
+```
+
+### 4. Run the tool
+
+```bash
+codemage <file-you-want-to-convert>
+# For example,
+codemage test.js
+```
+
+# Getting Started by cloning the github repo
 
 ### 1. Install Python : https://www.python.org/downloads/
 

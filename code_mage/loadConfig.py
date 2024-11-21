@@ -10,4 +10,12 @@ def load_config():
 	else:
 		config = {}
 
+	config["version"] = __get_version_from_pyproject()
+
 	return config
+
+
+def __get_version_from_pyproject():
+	with open("pyproject.toml", "r") as f:
+		pyproject_data = toml.load(f)
+	return pyproject_data["tool"]["poetry"]["version"]
