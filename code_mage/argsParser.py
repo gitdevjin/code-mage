@@ -2,7 +2,7 @@ import argparse
 
 
 def arg_parser(config):
-	VERSION = config.get("version")
+	VERSION = "1.1.2"
 
 	parser = argparse.ArgumentParser(
 		description="This Tool translates a source file into another programming language."
